@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>闫肃的博客</title>
+    <link>http://yansu.org</link>
+    <description>闫肃的博客</description>
+    
+      <item>
+        <title>Hello</title>
+        <link>http://yansu.org/2014/08/13/hello.html</link>
+        <guid isPermaLink="true">http://yansu.org/2014/08/13/hello.html</guid>
+        <pubDate>Wed, 13 Aug 2014 00:00:00 -0400</pubDate>
+        <description>&lt;p&gt;This article is used to test markdown features.&lt;/p&gt;
+
+&lt;h1&gt;Hello&lt;/h1&gt;
+
+&lt;h2&gt;Hello 2&lt;/h2&gt;
+
+&lt;h6&gt;Hello 6&lt;/h6&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This is a blockquote&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;bold&lt;/em&gt; &lt;em&gt;italic&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main(){
+    printf(&amp;quot;Hello world!\n&amp;quot;);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;http://github.com&quot;&gt;Visit github&lt;/a&gt;&lt;/p&gt;
+</description>
+      </item>
+    
+  </channel>
+</rss>
