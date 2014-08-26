@@ -6,6 +6,15 @@
     <description>Tech Blog of Qijunmi</description>
     
       <item>
+        <title>test</title>
+        <link>http://qijunmi.github.io/2014/08/26/test.html</link>
+        <guid isPermaLink="true">http://qijunmi.github.io/2014/08/26/test.html</guid>
+        <pubDate>Tue, 26 Aug 2014 00:00:00 -0400</pubDate>
+        <description>&lt;p&gt;This page is remain to write how to create my blog!&lt;/p&gt;
+</description>
+      </item>
+    
+      <item>
         <title>Hello</title>
         <link>http://qijunmi.github.io/2014/08/13/hello.html</link>
         <guid isPermaLink="true">http://qijunmi.github.io/2014/08/13/hello.html</guid>
