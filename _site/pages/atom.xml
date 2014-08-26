@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
   <channel>
-    <title>闫肃的博客</title>
-    <link>http://yansu.org</link>
-    <description>闫肃的博客</description>
+    <title>A Blog of Qijunmi</title>
+    <link>http://qijunmi.github.io</link>
+    <description>Tech Blog of Qijunmi</description>
     
       <item>
         <title>Hello</title>
-        <link>http://yansu.org/2014/08/13/hello.html</link>
-        <guid isPermaLink="true">http://yansu.org/2014/08/13/hello.html</guid>
+        <link>http://qijunmi.github.io/2014/08/13/hello.html</link>
+        <guid isPermaLink="true">http://qijunmi.github.io/2014/08/13/hello.html</guid>
         <pubDate>Wed, 13 Aug 2014 00:00:00 -0400</pubDate>
         <description>&lt;p&gt;This article is used to test markdown features.&lt;/p&gt;
 
