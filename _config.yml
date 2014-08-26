@@ -4,30 +4,30 @@ markdown: redcarpet
 
 # 作者信息
 author: 
-  name: 闫肃
-  email: yansu0711@gmail.com
-  link: http://yansu.org
-  weibo: http://weibo.com/yansu0711
-  github: http://github.com/suyan
+  name: 陈艺夫
+  email: qijunmi@163.com
+  link: http://qijunmi.github.io
+# weibo: http://weibo.com/yansu0711
+  github: http://github.com/qijunmi
 
 # 站点信息
-title: 闫肃的博客 
-description: 闫肃的博客
-url: http://yansu.org
+title: A Blog of Qijunmi 
+description: Tech Blog of Qijunmi
+url: http://qijunmi.github.io
 rss_url: /pages/atom.xml
 
 # gavatar头像及Favicon
 gavatar: asset/pic/avatar.png 
-favicon: http://yansu-uploads.stor.sinaapp.com/imgs/favicon.ico
+favicon: asset/pic/avatar.png 
 
 # google analytics 设置
 ga:
   id: UA-43667383-1
-  url: yansu.org
+  url: qijunmi.github.iog
 
 # disqus 设置
 disqus:
-  shortname: suyan-zh
+  shortname: qijunmi 
 
 # 主题设置，自动激活某个标签
 active: 技术
