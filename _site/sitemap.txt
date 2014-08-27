@@ -11,6 +11,6 @@
 
 
 
-  /2014/08/26/test.html
+  /test.html
 
-  /2014/08/13/hello.html
+  /hello.html
