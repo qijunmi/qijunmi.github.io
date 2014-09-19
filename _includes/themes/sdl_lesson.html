@@ -8,16 +8,17 @@
     </div>
 </div>
 
+
 	{% if page.previous %}
 	<div class="col-md-2 col-s-2 col-xs-6">
-		<span>Prev:</span>
+		<span>      Prev:</span>
 		<a href="{{BASE_PATH}}{{page.previous.url}}" title="{{page.previous.title}}">
 			{{page.previous.title}}</a>
 	</div>
 	{% endif %}
 	{% if page.next %}
 	<div class="col-md-2 col-s-2 col-xs-6">
-		<span>Next:</span>
+		<span>      Next:</span>
 		<a href="{{BASE_PATH}}{{page.next.url}}" title="{{page.next.title}}">
 			{{page.next.title}}</a>
 	</div>
