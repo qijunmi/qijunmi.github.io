@@ -1,0 +1,272 @@
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Postscript 0: Properly Finding Resource Paths</title>
+	
+		<meta name="description" content="">
+	
+    <meta name="author" content="Will Usher">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+
+	<link href="/assets/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/syntax.css" rel="stylesheet">
+	<link href="/assets/custom.css" rel="stylesheet">
+	<link rel="shortcut icon" href="/assets/img/identicon.ico">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle nav</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Will Usher</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					
+					
+					
+
+
+  
+    
+      
+        
+      	<li><a href="/pages/sdl2">SDL2 Tutorials</a></li>
+      	
+      
+    
+  
+    
+      
+        
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+        
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+
+
+
+
+
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+
+	<div class="container content">
+			
+<div class="page-header">
+	<h1>Postscript 0: Properly Finding Resource Paths <small></small></h1>
+</div>
+
+<div class="col-md-12">
+	<div class="col-md-9">
+		<p>In this short postscript we&#39;ll learn how to make use of <a href="https://wiki.libsdl.org/SDL_GetBasePath"><code>SDL_GetBasePath</code></a> to
+properly resolve the path to our resource directory where we&#39;ll be storing all the assets needed for each lesson.
+This approach lets us avoid issues with relative paths since it doesn&#39;t depend on where the program working
+directory is set when it&#39;s run. This functionality was introduced in SDL 2.0.1 so if you haven&#39;t updated to the latest SDL
+be sure to grab that before getting started.</p>
+
+<!--more-->
+
+<h2>Lesson Directory Structure</h2>
+
+<p><code>SDL_GetBasePath</code> will return the path to the directory where the application executable is, so to properly find the resource
+directory we&#39;ll have to know how to change this path to get the resource directory path. For the lessons I&#39;ll be using
+the directory structure below, if you&#39;re using a different directory structure you&#39;ll likely need to make some
+modifications to how the resource path is set.</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">Lessons/
+    bin/
+        executables in here
+    res/
+        Lesson1/
+            Lesson 1&#39;s assets are stored here
+    src/
+        Lesson1/
+            Lesson 1&#39;s source code
+    include/
+        Headers shared between lessons</code></pre></div>
+
+<h2>Getting the Resource Path</h2>
+
+<p>We&#39;ll now write a convenient utility header containing the <code>getResourcePath</code> function which will be used to resolve
+the resource path based on the folder structure above. The function will also take a subdirectory name to be
+appended to the path so we can then get the Lesson1 resource directory with <code>getResourcePath(&quot;Lesson1&quot;)</code>. The code
+below is placed into the shared include directory and named res_path.h in my code. The comments throughout the code
+provide more detail on what&#39;s going on so be sure to read through them.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#ifndef RES_PATH_H</span>
+<span class="cp">#define RES_PATH_H</span>
+
+<span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;string&gt;</span>
+<span class="cp">#include &lt;SDL.h&gt;</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Get the resource path for resources located in res/subDir</span>
+<span class="cm"> * It&#39;s assumed the project directory is structured like:</span>
+<span class="cm"> * bin/</span>
+<span class="cm"> *  the executable</span>
+<span class="cm"> * res/</span>
+<span class="cm"> *  Lesson1/</span>
+<span class="cm"> *  Lesson2/</span>
+<span class="cm"> *</span>
+<span class="cm"> * Paths returned will be Lessons/res/subDir</span>
+<span class="cm"> */</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getResourcePath</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">subDir</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">){</span>
+    <span class="c1">//We need to choose the path separator properly based on which</span>
+    <span class="c1">//platform we&#39;re running on, since Windows uses a different</span>
+    <span class="c1">//separator than most systems</span>
+<span class="cp">#ifdef _WIN32</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="n">PATH_SEP</span> <span class="o">=</span> <span class="sc">&#39;\\&#39;</span><span class="p">;</span>
+<span class="cp">#else</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="n">PATH_SEP</span> <span class="o">=</span> <span class="sc">&#39;/&#39;</span><span class="p">;</span>
+<span class="cp">#endif</span>
+    <span class="c1">//This will hold the base resource path: Lessons/res/</span>
+    <span class="c1">//We give it static lifetime so that we&#39;ll only need to call</span>
+    <span class="c1">//SDL_GetBasePath once to get the executable path</span>
+    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">baseRes</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">baseRes</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+        <span class="c1">//SDL_GetBasePath will return NULL if something went wrong in retrieving the path</span>
+        <span class="kt">char</span> <span class="o">*</span><span class="n">basePath</span> <span class="o">=</span> <span class="n">SDL_GetBasePath</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">basePath</span><span class="p">){</span>
+            <span class="n">baseRes</span> <span class="o">=</span> <span class="n">basePath</span><span class="p">;</span>
+            <span class="n">SDL_free</span><span class="p">(</span><span class="n">basePath</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Error getting resource path: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">SDL_GetError</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">//We replace the last bin/ with res/ to get the the resource path</span>
+        <span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">baseRes</span><span class="p">.</span><span class="n">rfind</span><span class="p">(</span><span class="s">&quot;bin&quot;</span><span class="p">);</span>
+        <span class="n">baseRes</span> <span class="o">=</span> <span class="n">baseRes</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;res&quot;</span> <span class="o">+</span> <span class="n">PATH_SEP</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//If we want a specific subdirectory path in the resource directory</span>
+    <span class="c1">//append it to the base path. This would be something like Lessons/res/Lesson0</span>
+    <span class="k">return</span> <span class="n">subDir</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">?</span> <span class="nl">baseRes</span> <span class="p">:</span> <span class="n">baseRes</span> <span class="o">+</span> <span class="n">subDir</span> <span class="o">+</span> <span class="n">PATH_SEP</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#endif</span></code></pre></div>
+
+<p><br /></p>
+
+<h2>Using the Resource Path Lookup</h2>
+
+<p>With our new utility function we can easily construct the resource path for our programs and no longer need to rely
+on relative paths and the various hassles that come with them. To get access to this new header in our shared include
+directory we&#39;ll need to add the directory <code>include</code> to our include path.</p>
+
+<ul>
+<li><strong>CMake</strong>: In your top level CMakeLists file add <code>include_directories(include)</code>.</li>
+<li><strong>Visual Studio</strong>: Add the include directory through your project preferences, similar to how you set the SDL2
+include directories.</li>
+<li><strong>GCC and Clang</strong>: Use the <code>-I</code> flag to add the directory to your include path, eg. <code>-Iinclude</code>.</li>
+</ul>
+
+<p>We&#39;ll now write a simple program that will print out the resource directory path to make sure everything is working correctly.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;string&gt;</span>
+<span class="cp">#include &lt;SDL.h&gt;</span>
+<span class="cp">#include &quot;res_path.h&quot;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">SDL_Init</span><span class="p">(</span><span class="n">SDL_INIT_EVERYTHING</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;SDL_Init error: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">SDL_GetError</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Resource path is: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">getResourcePath</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">SDL_Quit</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<h2>End of Postscript</h2>
+
+<p>You&#39;ll want to double check that the path output by the test program is correct as we&#39;ll be using <code>getResourcePath</code> extensively
+throughout the lessons to reliably find the various images and other assets we need for our programs. A related function
+provided by SDL is <a href="https://wiki.libsdl.org/SDL_GetPrefPath"><code>SDL_GetPrefPath</code></a> which returns the path where your application
+can write personal files (save games, etc.).</p>
+
+<p>I&#39;ll see you again soon in <a href="/sdl2%20tutorials/2013/08/17/lesson-1-hello-world">Lesson 1: Hello World!</a></p>
+
+	</div>
+	<div class="col-md-3">
+		<h4><a href="/pages/sdl2/">Tutorial Index</a></h4>
+		<h4>Helpful Links</h4>
+		<a href="http://wiki.libsdl.org/moin.fcg/FrontPage">SDL Documentation</a>
+		<br />
+		<a href="http://forums.libsdl.org/">SDL Forums</a>
+		<br />
+		<a href="irc://irc.freenode.net/SDL">IRC: #SDL on freenode</a>
+		<br />
+		<a href="http://en.cppreference.com/w/">C++ Reference</a>
+		<br />
+		<a href="https://github.com/Twinklebear/TwinklebearDev-Lessons">Code on Github</a>
+		<p>Published: 16 June 2014
+	</div>
+</div>
+<div class="col-md-12 comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'twinklebeargithub'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+</div>
+
+
+
+
+	</div>
+
+	
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="/assets/bootstrap3/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+</body>
+</html>
+
+
+

@@ -1,16 +1,35 @@
 
-  /pages/about.html
+www.willusher.io/pages/about.html
+www.willusher.io/pages/archive.html
+www.willusher.io/archive.html
+www.willusher.io/pages/atom.xml
+www.willusher.io/atom.xml
+www.willusher.io/categories.html
+www.willusher.io/pages/sdl2/index.html
+www.willusher.io/index.html
+www.willusher.io/courses/cs6620/index.html
+www.willusher.io/pages.html
+www.willusher.io/courses/cs6620/prj1.html
+www.willusher.io/courses/cs6620/prj2.html
+www.willusher.io/courses/cs6620/prj3.html
+www.willusher.io/rss.xml
+www.willusher.io/sitemap.txt
+www.willusher.io/tags.html
 
-  /pages/archive.html
-
-  /pages/atom.xml
-
-  /index.html
-
-  /sitemap.txt
-
-
-
-  /test.html
-
-  /hello.html
+www.willusher.io/linux/2014/08/26/test
+www.willusher.io/os/2014/08/13/hello
+www.willusher.io/os/2014/08/13/hello
+www.willusher.io/sdl2%20tutorials/2014/08/01/postscript-1-easy-cleanup
+www.willusher.io/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths
+www.willusher.io/sdl2%20tutorials/2014/03/06/lesson-0-cmake
+www.willusher.io/sdl2%20tutorials/2013/12/18/lesson-6-true-type-fonts-with-sdl_ttf
+www.willusher.io/sdl2%20tutorials/2013/08/27/lesson-5-clipping-sprite-sheets
+www.willusher.io/sdl2%20tutorials/2013/08/20/lesson-4-handling-events
+www.willusher.io/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries
+www.willusher.io/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main
+www.willusher.io/sdl2%20tutorials/2013/08/17/lesson-1-hello-world
+www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-visual-studio
+www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-setting-up-sdl
+www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-mingw
+www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-mac-command-line
+www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-linux-command-line

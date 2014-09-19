@@ -1,37 +1,16 @@
 ---
-layout: page
-title: 首页
+layout: home_page
+title: Programs on the Internet
 ---
+{% include JB/setup %}
 
-<br>
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">{{ site.locals.newest }}</div>
-      {% for post in paginator.posts %}
-        <a  href='{{ post.url }}' class="list-group-item pjaxlink clearfix">
-          {{post.title}}
-          <span class="badge">{{ post.date | date:"%Y年%m月%d日" }}</span>
-        </a>
-      {% endfor %}
-    </div>
-  </div>
-  {% for cate in site.cates %}
-    <div class="col-md-12">
-      <div class="panel panel-primary">
-        <div class="panel-heading">{{ cate }}</div>
-        {% for tag in site.tags %} 
-          {% if tag[0] == cate %}
-            {% for post in tag[1] %}
-              <a  href='{{ post.url }}' class="list-group-item pjaxlink clearfix">
-                {{post.title}}
-                <span class="badge">{{ post.date | date:"%Y年%m月%d日" }}</span>
-              </a>
-            {% endfor %}
-          {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-  {% endfor %}
+{% for post in site.posts %}
+<div class="post_excerpt">
+	<a href="{{ post.url }}"><h3>{{ post.title }}</h3></a>
+	<b>{{ post.date | date_to_string }}</b>
+	{{ post.excerpt }}
+
+	<a href="{{ post.url }}"><b>Continue...</b></a>
 </div>
- 
+{% endfor %}
+

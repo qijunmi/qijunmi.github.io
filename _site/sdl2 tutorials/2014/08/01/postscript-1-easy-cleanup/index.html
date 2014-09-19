@@ -1,0 +1,269 @@
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Postscript 1: Easy Cleanup</title>
+	
+		<meta name="description" content="variadical!">
+	
+    <meta name="author" content="Will Usher">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+
+	<link href="/assets/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/syntax.css" rel="stylesheet">
+	<link href="/assets/custom.css" rel="stylesheet">
+	<link rel="shortcut icon" href="/assets/img/identicon.ico">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle nav</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Will Usher</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					
+					
+					
+
+
+  
+    
+      
+        
+      	<li><a href="/pages/sdl2">SDL2 Tutorials</a></li>
+      	
+      
+    
+  
+    
+      
+        
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+        
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+
+
+
+
+
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+
+	<div class="container content">
+			
+<div class="page-header">
+	<h1>Postscript 1: Easy Cleanup <small>variadical!</small></h1>
+</div>
+
+<div class="col-md-12">
+	<div class="col-md-9">
+		<p>In this quick postscript we&#39;ll look into a simple way to clean up our various SDL resources with variadic templates
+and template specialization. This will let us clean up all our resources with a single simple call:
+<code>cleanup(texA, texB, renderer, window)</code> instead of calling all the corresponding <code>SDL_Destroy/Free*</code> functions,
+saving ourselves a lot of typing.</p>
+
+<p>We&#39;ll do this by creating a variadic function <code>cleanup</code> that will take the list of SDL resources to be free&#39;d and then
+define specializations of it for each resource we&#39;ll be passing, eg. for <code>SDL_Window</code>, <code>SDL_Renderer</code>, <code>SDL_Texture</code>
+and so on.</p>
+
+<!--more-->
+
+<h2>The Variadic Cleanup Function</h2>
+
+<p>If you&#39;re unfamiliar with the C++11&#39;s <a href="http://en.wikipedia.org/wiki/Variadic_template">varidic templates</a> and
+<a href="http://thbecker.net/articles/rvalue_references/section_01.html">rvalue references and forwarding</a> features it may be useful
+to do some reading to get some background before continuing on to the implementation. The implementation
+of our cleanup function however is actually quite simple. We have a single variadic template function that
+calls one of our specialized cleanup functions and then recurses to iterate through the list of arguments.
+Since the code for this functionality is so short I&#39;ve left the detailed explanations in the comments, so be sure to
+read through them.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#ifndef CLEANUP_H</span>
+<span class="cp">#define CLEANUP_H</span>
+
+<span class="cp">#include &lt;utility&gt;</span>
+<span class="cp">#include &lt;SDL.h&gt;</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Recurse through the list of arguments to clean up, cleaning up</span>
+<span class="cm"> * the first one in the list each iteration.</span>
+<span class="cm"> */</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">cleanup</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span><span class="n">t</span><span class="p">,</span> <span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">){</span>
+    <span class="c1">//Cleanup the first item in the list</span>
+    <span class="n">cleanup</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+    <span class="c1">//Recurse to clean up the remaining arguments</span>
+    <span class="n">cleanup</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Args</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)...);</span>
+<span class="p">}</span>
+<span class="cm">/*</span>
+<span class="cm"> * These specializations serve to free the passed argument and also provide the</span>
+<span class="cm"> * base cases for the recursive call above, eg. when args is only a single item</span>
+<span class="cm"> * one of the specializations below will be called by</span>
+<span class="cm"> * cleanup(std::forward&lt;Args&gt;(args)...), ending the recursion</span>
+<span class="cm"> * We also make it safe to pass nullptrs to handle situations where we</span>
+<span class="cm"> * don&#39;t want to bother finding out which values failed to load (and thus are null)</span>
+<span class="cm"> * but rather just want to clean everything up and let cleanup sort it out</span>
+<span class="cm"> */</span>
+<span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="kt">void</span> <span class="n">cleanup</span><span class="o">&lt;</span><span class="n">SDL_Window</span><span class="o">&gt;</span><span class="p">(</span><span class="n">SDL_Window</span> <span class="o">*</span><span class="n">win</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">win</span><span class="p">){</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">SDL_DestroyWindow</span><span class="p">(</span><span class="n">win</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="kt">void</span> <span class="n">cleanup</span><span class="o">&lt;</span><span class="n">SDL_Renderer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">SDL_Renderer</span> <span class="o">*</span><span class="n">ren</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ren</span><span class="p">){</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">SDL_DestroyRenderer</span><span class="p">(</span><span class="n">ren</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="kt">void</span> <span class="n">cleanup</span><span class="o">&lt;</span><span class="n">SDL_Texture</span><span class="o">&gt;</span><span class="p">(</span><span class="n">SDL_Texture</span> <span class="o">*</span><span class="n">tex</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">tex</span><span class="p">){</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">SDL_DestroyTexture</span><span class="p">(</span><span class="n">tex</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="kt">void</span> <span class="n">cleanup</span><span class="o">&lt;</span><span class="n">SDL_Surface</span><span class="o">&gt;</span><span class="p">(</span><span class="n">SDL_Surface</span> <span class="o">*</span><span class="n">surf</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">surf</span><span class="p">){</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="n">surf</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#endif</span></code></pre></div>
+
+<p><br /></p>
+
+<h2>Using the Variadic Cleanup Function</h2>
+
+<p>To see the usefulness of this cleanup utility let&#39;s see how it compresses our calls to the various
+<code>SDL_Destroy/Free*</code> functions throughout <a href="/sdl2%20tutorials/2013/08/17/lesson-1-hello-world">Lesson 1</a>.
+In lesson 1 if we found that our bitmap or texture wasn&#39;t created successfully we&#39;d need to destroy
+the renderer and window before quitting out of SDL and exiting with a failure code. With <code>cleanup</code>
+we can compress these two lines down to a single call.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">//We compress these two lines down</span>
+<span class="c1">//SDL_DestroyRenderer(ren);</span>
+<span class="c1">//SDL_DestroyWindow(win);</span>
+<span class="c1">//to a single cleanup call:</span>
+<span class="n">cleanup</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">win</span><span class="p">);</span></code></pre></div>
+
+<p><br /></p>
+
+<p>We can also compress the three lines used to free all the resources (texture, renderer and window) at the end of
+Lesson 1 down into a single <code>cleanup</code> call, passing all the resources we want to free.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">//We compress these three lines down</span>
+<span class="c1">//SDL_DestroyTexture(tex);</span>
+<span class="c1">//SDL_DestroyRenderer(ren);</span>
+<span class="c1">//SDL_DestroyWindow(win);</span>
+<span class="c1">//to a single cleanup call:</span>
+<span class="n">cleanup</span><span class="p">(</span><span class="n">tex</span><span class="p">,</span> <span class="n">ren</span><span class="p">,</span> <span class="n">win</span><span class="p">);</span></code></pre></div>
+
+<p><br /></p>
+
+<p><code>cleanup</code> can also be used as a drop-in replacement for the various <code>SDL_Destroy/Free*</code> functions, although this
+doesn&#39;t really give us much benefit as far as compressing lines goes.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">//Cleanup can also swap in for direct calls turning</span>
+<span class="c1">//SDL_FreeSurface(bmp);</span>
+<span class="c1">//into</span>
+<span class="n">cleanup</span><span class="p">(</span><span class="n">bmp</span><span class="p">);</span></code></pre></div>
+
+<p><br /></p>
+
+<h2>End of Postscript</h2>
+
+<p>That&#39;s all for this postscript, try out <code>cleanup</code> yourself by converting your code from Lesson 1 to use it instead of
+calling all the <code>SDL_Destroy/Free*</code> functions manually. If you run into any issues or have any questions
+please post a comment below.</p>
+
+<p>I&#39;ll see you again soon in
+<a href="/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main">Lesson 2: Don&#39;t Put Everything in Main</a>!</p>
+
+	</div>
+	<div class="col-md-3">
+		<h4><a href="/pages/sdl2/">Tutorial Index</a></h4>
+		<h4>Helpful Links</h4>
+		<a href="http://wiki.libsdl.org/moin.fcg/FrontPage">SDL Documentation</a>
+		<br />
+		<a href="http://forums.libsdl.org/">SDL Forums</a>
+		<br />
+		<a href="irc://irc.freenode.net/SDL">IRC: #SDL on freenode</a>
+		<br />
+		<a href="http://en.cppreference.com/w/">C++ Reference</a>
+		<br />
+		<a href="https://github.com/Twinklebear/TwinklebearDev-Lessons">Code on Github</a>
+		<p>Published: 01 August 2014
+	</div>
+</div>
+<div class="col-md-12 comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'twinklebeargithub'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+</div>
+
+
+
+
+	</div>
+
+	
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="/assets/bootstrap3/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+</body>
+</html>
+
+
+

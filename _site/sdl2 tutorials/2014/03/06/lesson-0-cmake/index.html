@@ -1,0 +1,291 @@
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lesson 0: CMake</title>
+	
+		<meta name="description" content="Setting Up SDL">
+	
+    <meta name="author" content="Will Usher">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+
+	<link href="/assets/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/syntax.css" rel="stylesheet">
+	<link href="/assets/custom.css" rel="stylesheet">
+	<link rel="shortcut icon" href="/assets/img/identicon.ico">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle nav</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Will Usher</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					
+					
+					
+
+
+  
+    
+      
+        
+      	<li><a href="/pages/sdl2">SDL2 Tutorials</a></li>
+      	
+      
+    
+  
+    
+      
+        
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+        
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+
+
+
+
+
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+
+	<div class="container content">
+			
+<div class="page-header">
+	<h1>Lesson 0: CMake <small>Setting Up SDL</small></h1>
+</div>
+
+<div class="col-md-12">
+	<div class="col-md-9">
+		<p>CMake is really useful for building the lessons since it lets us generate make files or project files for just about
+any platform and IDE. It also helps with resolving dependencies (such as SDL2), platform specific configurations and
+much much more. If you&#39;re unfamiliar with CMake there&#39;s a nice introduction
+available on <a href="http://www.cmake.org/cmake/help/cmake_tutorial.html">their site</a> to help you get started.</p>
+
+<!--more-->
+
+<blockquote>
+<b>Windows users:</b> Since Windows doesn't have any standardized include or library directories like Linux and OS X CMake
+can have some trouble resolving dependencies, so we'll need to give it a hand. I've taken the existing FindSDL2
+modules for CMake and have modified them a bit to also check for an environment variable named <code>SDL2</code>. You should
+create this environment variable and have it point to the root level of the folder containing the SDL2 headers
+and libraries you downloaded previously.
+</blockquote>
+
+<p>To lookup SDL2 we&#39;ll need a module to find the dependency we want. Typically these are included in the CMake distribution
+but for some newer libraries they may not be integrated yet. In the case of SDL2 we&#39;ll need to provide our own module
+to lookup the dependency. This module is available around online and in the lesson <a href="https://github.com/Twinklebear/TwinklebearDev-Lessons/blob/master/cmake/FindSDL2.cmake">repository</a>. For Windows users I recommend using the modified version from the
+repository since it will also check for your <code>SDL2</code> environment variable. The existing FindSDL2.cmake that&#39;s floating
+around will work for Linux and Mac but will likely fail to find the libraries on Windows.</p>
+
+<h2>The CMakeLists.txt Files for Our Project</h2>
+
+<p>Our main CMakeLists file needs to do a few things so that we can build our project easily:</p>
+
+<ul>
+<li>Append to the CMake module path so we can find our modified SDL2 modules.</li>
+<li>Set an install directory (called <code>BIN_DIR</code> here) that we can reference for installing our executables.</li>
+<li>Find SDL2 and add the SDL2 include directory to the include path.</li>
+<li>Add the Lesson0 subdirectory to find this lesson&#39;s CMakeLists.txt so that we can build it.</li>
+</ul>
+
+<p>This CMakeLists.txt file should be in the top level directory of your project folder for the lessons.</p>
+
+<div class="highlight"><pre><code class="language-cmake" data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">2.6</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">TwinklebearDevLessons</span><span class="p">)</span>
+
+<span class="c"># Use our modified FindSDL2* modules</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_MODULE_PATH</span> <span class="o">${</span><span class="nv">CMAKE_MODULE_PATH</span><span class="o">}</span> <span class="s2">&quot;${TwinklebearDevLessons_SOURCE_DIR}/cmake&quot;</span><span class="p">)</span>
+<span class="c"># Set an output directory for our binaries</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">BIN_DIR</span> <span class="o">${</span><span class="nv">TwinklebearDevLessons_SOURCE_DIR</span><span class="o">}</span><span class="s">/bin</span><span class="p">)</span>
+
+<span class="c"># Bump up warning levels appropriately for clang, gcc &amp; msvc</span>
+<span class="c"># Also set debug/optimization flags depending on the build type. IDE users choose this when</span>
+<span class="c"># selecting the build mode in their IDE</span>
+<span class="nb">if</span> <span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_CXX_COMPILER_ID</span><span class="o">}</span> <span class="s">STREQUAL</span> <span class="s2">&quot;GNU&quot;</span> <span class="s">OR</span> <span class="o">${</span><span class="nv">CMAKE_CXX_COMPILER_ID</span><span class="o">}</span> <span class="s">STREQUAL</span> <span class="s2">&quot;Clang&quot;</span><span class="p">)</span>
+    <span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_FLAGS</span> <span class="s2">&quot;${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -std=c++11&quot;</span><span class="p">)</span>
+    <span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_FLAGS_DEBUG</span> <span class="s2">&quot;${CMAKE_CXX_FLAGS} -g&quot;</span><span class="p">)</span>
+    <span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_FLAGS_RELEASE</span> <span class="s2">&quot;${CMAKE_CXX_FLAGS} -O2&quot;</span><span class="p">)</span>
+<span class="nb">elseif</span> <span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_CXX_COMPILER_ID</span><span class="o">}</span> <span class="s">STREQUAL</span> <span class="s2">&quot;MSVC&quot;</span><span class="p">)</span>
+    <span class="nb">if</span> <span class="p">(</span><span class="s">CMAKE_CXX_FLAGS</span> <span class="s">MATCHES</span> <span class="s2">&quot;/W[0-4]&quot;</span><span class="p">)</span>
+        <span class="nb">string</span><span class="p">(</span><span class="s">REGEX</span> <span class="s">REPLACE</span> <span class="s2">&quot;/W[0-4]&quot;</span> <span class="s2">&quot;/W4&quot;</span> <span class="s">CMAKE_CXX_FLAGS</span> <span class="s2">&quot;${CMAKE_CXX_FLAGS}&quot;</span><span class="p">)</span>
+    <span class="nb">else</span><span class="p">()</span>
+        <span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_FLAGS</span> <span class="s2">&quot;${CMAKE_CXX_FLAGS} /W4&quot;</span><span class="p">)</span>
+    <span class="nb">endif</span><span class="p">()</span>
+<span class="nb">endif</span><span class="p">()</span>
+
+<span class="c"># Look up SDL2 and add the include directory to our include path</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">SDL2</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">SDL2_INCLUDE_DIR</span><span class="o">}</span><span class="p">)</span>
+
+<span class="c"># Look in the Lesson0 subdirectory to find its CMakeLists.txt so we can build the executable</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">Lesson0</span><span class="p">)</span></code></pre></div>
+
+<p><br /></p>
+
+<h2>The Test Program</h2>
+
+<p>The program we&#39;re building for this lesson is a simple sanity check for SDL. It will 
+<a href="https://wiki.libsdl.org/SDL_Init">initialize</a> all the SDL subsystems, check for any
+<a href="https://wiki.libsdl.org/SDL_GetError">errors</a> and then <a href="https://wiki.libsdl.org/SDL_Quit">quit</a>.
+Our build system will look for this file under Lesson0/src/main.cpp.
+If you place it elsewhere you&#39;ll need to update the file names and subdirectories in the CMakeLists files.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;SDL.h&gt;</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Lesson 0: Test to make sure SDL is setup properly</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">SDL_Init</span><span class="p">(</span><span class="n">SDL_INIT_EVERYTHING</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;SDL_Init Error: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">SDL_GetError</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">SDL_Quit</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p><br /></p>
+
+<p>To build our executable for Lesson0 we&#39;ll need another CMakeLists.txt file within the Lesson0 directory, which our
+main CMakeLists file will check since we&#39;ve added the subdirectory to be searched. Here we just add an
+executable to be built from our source file and tell CMake to link the executable against the SDL2 libraries.
+We also add an install target to have the executable be installed to our binary directory.</p>
+
+<div class="highlight"><pre><code class="language-cmake" data-lang="cmake"><span class="nb">project</span><span class="p">(</span><span class="s">Lesson0</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">Lesson0</span> <span class="s">src/main.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">Lesson0</span> <span class="o">${</span><span class="nv">SDL2_LIBRARY</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span> <span class="s">Lesson0</span> <span class="s">RUNTIME</span> <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">BIN_DIR</span><span class="o">}</span><span class="p">)</span></code></pre></div>
+
+<p><br /></p>
+
+<p>If you&#39;ve been using the folder hierarchy used in the lessons you should now have something like this.</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">TwinklebearDevLessons/
+    CMakeLists.txt
+    Lesson0/
+        CMakeLists.txt
+        src/
+            main.cpp
+    cmake/
+        FindSDL2.cmake</code></pre></div>
+
+<p><br /></p>
+
+<h2>Building With CMake</h2>
+
+<p>To build the project with CMake we&#39;ll want to make a temporary build directory to store the various build artifacts so we
+don&#39;t pollute our source directory with a bunch of junk. From this folder we can then run <code>cmake -G &quot;Your Generator&quot; ../</code>
+and CMake will generate makefiles or project files for <code>Your Generator</code>. You can run <code>cmake -H</code> to see which generators
+are available on your system. You can also specify the build type with <code>-DCMAKE_BUILD_TYPE=Type</code>, passing Debug will
+use the debug flags we set above and likewise for Release. I recommend building with the debug flags since it&#39;ll make
+it easier to track down problems with your debugger. A sample run of building a Unix Makefiles target 
+in debug mode is shown below.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
+<span class="nv">$ </span>cmake -G <span class="s2">&quot;Unix Makefiles&quot;</span> -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug ../
+<span class="nv">$ </span>make
+<span class="nv">$ </span>make install</code></pre></div>
+
+<p><br /></p>
+
+<p>In this example regular Unix Makefiles will be generated in the build directory so the project can now be built
+with make. Running <code>make install</code> will install any targets we&#39;ve specified (our Lesson0 binary) to their install
+locations (<code>BIN_DIR</code>). Windows users will also need to copy the relevant SDL2.dll to their install directory so
+that the executables can find it. Be sure to copy the appropriate 32bit or 64bit dll depending on which you built.</p>
+
+<h2>End of Lesson 0</h2>
+
+<p>When we add more programs throughout the lesson series you can simply add the subdirectory with
+<code>add_subdirectory(Lesson#)</code> and then re-use the Lesson0 CMakeLists.txt file but replacing the occurances of
+<code>Lesson0</code> with <code>Lesson#</code>. When we start adding SDL extension libraries we&#39;ll have to add some more CMake modules
+and link targets but it&#39;s pretty straightforward to setup.</p>
+
+<p>If you&#39;re having any problems with the lesson please leave a comment below.</p>
+
+<p>I&#39;ll see you again soon in <a href="/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths">Postscript 0: Properly Finding Resource Paths!</a></p>
+
+	</div>
+	<div class="col-md-3">
+		<h4><a href="/pages/sdl2/">Tutorial Index</a></h4>
+		<h4>Helpful Links</h4>
+		<a href="http://wiki.libsdl.org/moin.fcg/FrontPage">SDL Documentation</a>
+		<br />
+		<a href="http://forums.libsdl.org/">SDL Forums</a>
+		<br />
+		<a href="irc://irc.freenode.net/SDL">IRC: #SDL on freenode</a>
+		<br />
+		<a href="http://en.cppreference.com/w/">C++ Reference</a>
+		<br />
+		<a href="https://github.com/Twinklebear/TwinklebearDev-Lessons">Code on Github</a>
+		<p>Published: 06 March 2014
+	</div>
+</div>
+<div class="col-md-12 comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'twinklebeargithub'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+</div>
+
+
+
+
+	</div>
+
+	
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="/assets/bootstrap3/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+</body>
+</html>
+
+
+
