@@ -1,59 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>Qijunmi</title>
- <link href="qijunmi.github.io/" rel="self"/>
- <link href="qijunmi.github.io"/>
- <updated>2014-09-19T09:49:06-04:00</updated>
- <id>qijunmi.github.io</id>
+ <title>Will Usher</title>
+ <link href="www.willusher.io/" rel="self"/>
+ <link href="www.willusher.io"/>
+ <updated>2014-09-19T10:11:37-04:00</updated>
+ <id>www.willusher.io</id>
  <author>
-   <name>qijunmi</name>
-   <email>qijunmi@163.com</email>
+   <name>Will Usher</name>
+   <email>will@willusher.io</email>
  </author>
 
  
  <entry>
-   <title>test</title>
-   <link href="qijunmi.github.io/linux/2014/08/26/test"/>
-   <updated>2014-08-26T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/linux/2014/08/26/test</id>
-   <content type="html">&lt;p&gt;This page is remain to write how to create my blog!&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
    <title>Hello</title>
-   <link href="qijunmi.github.io/os/2014/08/13/hello"/>
+   <link href="www.willusher.io/os/2014/08/13/hello"/>
    <updated>2014-08-13T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/os/2014/08/13/hello</id>
-   <content type="html">&lt;p&gt;This article is used to test markdown features.&lt;/p&gt;
-
-&lt;h1&gt;Hello&lt;/h1&gt;
-
-&lt;h2&gt;Hello 2&lt;/h2&gt;
-
-&lt;h6&gt;Hello 6&lt;/h6&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;This is a blockquote&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;em&gt;bold&lt;/em&gt; &lt;em&gt;italic&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-int main(){
-    printf(&amp;quot;Hello world!\n&amp;quot;);
-    return 0;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;http://github.com&quot;&gt;Visit github&lt;/a&gt;&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Hello</title>
-   <link href="qijunmi.github.io/os/2014/08/13/hello"/>
-   <updated>2014-08-13T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/os/2014/08/13/hello</id>
+   <id>www.willusher.io/os/2014/08/13/hello</id>
    <content type="html">&lt;p&gt;This article is used to test markdown features.&lt;/p&gt;
 
 &lt;h1&gt;Hello&lt;/h1&gt;
@@ -80,9 +43,9 @@ int main(){
  
  <entry>
    <title>Postscript 1: Easy Cleanup</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2014/08/01/postscript-1-easy-cleanup"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2014/08/01/postscript-1-easy-cleanup"/>
    <updated>2014-08-01T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2014/08/01/postscript-1-easy-cleanup</id>
+   <id>www.willusher.io/sdl2%20tutorials/2014/08/01/postscript-1-easy-cleanup</id>
    <content type="html">&lt;p&gt;In this quick postscript we&amp;#39;ll look into a simple way to clean up our various SDL resources with variadic templates
 and template specialization. This will let us clean up all our resources with a single simple call:
 &lt;code&gt;cleanup(texA, texB, renderer, window)&lt;/code&gt; instead of calling all the corresponding &lt;code&gt;SDL_Destroy/Free*&lt;/code&gt; functions,
@@ -214,9 +177,9 @@ please post a comment below.&lt;/p&gt;
  
  <entry>
    <title>Postscript 0: Properly Finding Resource Paths</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths"/>
    <updated>2014-06-16T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths</id>
+   <id>www.willusher.io/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths</id>
    <content type="html">&lt;p&gt;In this short postscript we&amp;#39;ll learn how to make use of &lt;a href=&quot;https://wiki.libsdl.org/SDL_GetBasePath&quot;&gt;&lt;code&gt;SDL_GetBasePath&lt;/code&gt;&lt;/a&gt; to
 properly resolve the path to our resource directory where we&amp;#39;ll be storing all the assets needed for each lesson.
 This approach lets us avoid issues with relative paths since it doesn&amp;#39;t depend on where the program working
@@ -351,9 +314,9 @@ can write personal files (save games, etc.).&lt;/p&gt;
  
  <entry>
    <title>Lesson 0: CMake</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2014/03/06/lesson-0-cmake"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2014/03/06/lesson-0-cmake"/>
    <updated>2014-03-06T00:00:00-05:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2014/03/06/lesson-0-cmake</id>
+   <id>www.willusher.io/sdl2%20tutorials/2014/03/06/lesson-0-cmake</id>
    <content type="html">&lt;p&gt;CMake is really useful for building the lessons since it lets us generate make files or project files for just about
 any platform and IDE. It also helps with resolving dependencies (such as SDL2), platform specific configurations and
 much much more. If you&amp;#39;re unfamiliar with CMake there&amp;#39;s a nice introduction
@@ -507,9 +470,9 @@ and link targets but it&amp;#39;s pretty straightforward to setup.&lt;/p&gt;
  
  <entry>
    <title>Lesson 6: True Type Fonts with SDL_ttf</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/12/18/lesson-6-true-type-fonts-with-sdl_ttf"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/12/18/lesson-6-true-type-fonts-with-sdl_ttf"/>
    <updated>2013-12-18T00:00:00-05:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/12/18/lesson-6-true-type-fonts-with-sdl_ttf</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/12/18/lesson-6-true-type-fonts-with-sdl_ttf</id>
    <content type="html">&lt;p&gt;In this lesson we&amp;#39;ll see how to perform basic True Type font rendering with the SDL&lt;em&gt;ttf extension library.
 Setting up the library is identical to what we did in
 &lt;a href=&quot;/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries&quot;&gt;Lesson 3&lt;/a&gt; for SDL&lt;/em&gt;image, but just replace
@@ -664,9 +627,9 @@ the lesson feel free to post a comment below. I&amp;#39;ll see you again soon in
  
  <entry>
    <title>Lesson 5: Clipping Sprite Sheets</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/08/27/lesson-5-clipping-sprite-sheets"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/08/27/lesson-5-clipping-sprite-sheets"/>
    <updated>2013-08-27T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/08/27/lesson-5-clipping-sprite-sheets</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/08/27/lesson-5-clipping-sprite-sheets</id>
    <content type="html">&lt;p&gt;It&amp;#39;s common in sprite based games to use a larger image file containing many smaller images, such as the 
 tiles for a tileset, instead of having a separate image file for each tile. This type of image is known
 as a sprite sheet and is very handy to work with since we don&amp;#39;t need to change which texture we&amp;#39;re drawing
@@ -863,9 +826,9 @@ and/or post a question below.&lt;/p&gt;
  
  <entry>
    <title>Lesson 4: Handling Events</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/08/20/lesson-4-handling-events"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/08/20/lesson-4-handling-events"/>
    <updated>2013-08-20T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/08/20/lesson-4-handling-events</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/08/20/lesson-4-handling-events</id>
    <content type="html">&lt;p&gt;In this lesson we&amp;#39;ll learn the basics of reading user input with SDL, in this simple example we&amp;#39;ll interpret any input
 as the user wanting to quit our application.
 To read events SDL provides the &lt;a href=&quot;http://wiki.libsdl.org/SDL_Event&quot;&gt;&lt;code&gt;SDL_Event&lt;/code&gt;&lt;/a&gt; structure
@@ -978,9 +941,9 @@ If you have any issues double check your code and/or post your question below.&l
  
  <entry>
    <title>Lesson 3: SDL Extension Libraries</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries"/>
    <updated>2013-08-18T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries</id>
    <content type="html">&lt;p&gt;Up until now we&amp;#39;ve only been using BMP images as they&amp;#39;re the only type supported by the base SDL library,
 but being restricted to using BMP images isn&amp;#39;t that great. Fortunately there are a set of SDL extension libraries
 that add useful features to SDL, such as support for a wide variety of image types through 
@@ -1264,9 +1227,9 @@ any questions you may have below.&lt;/p&gt;
  
  <entry>
    <title>Lesson 2: Don't Put Everything in Main</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main"/>
    <updated>2013-08-17T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main</id>
    <content type="html">&lt;p&gt;In this lesson we&amp;#39;ll begin organizing our texture loading and rendering code from the previous lesson by 
 moving them out of main and placing them into some useful functions. We&amp;#39;ll also write a simple generic
 SDL error logger and learn how images are positioned and scaled when rendering with SDL.&lt;/p&gt;
@@ -1518,9 +1481,9 @@ of the image would be drawn at the center of the screen instead.&lt;/p&gt;
  
  <entry>
    <title>Lesson 1: Hello World</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/08/17/lesson-1-hello-world"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/08/17/lesson-1-hello-world"/>
    <updated>2013-08-17T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/08/17/lesson-1-hello-world</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/08/17/lesson-1-hello-world</id>
    <content type="html">&lt;p&gt;In this lesson we&amp;#39;ll learn how to open a window, create a rendering context and draw
 an image we&amp;#39;ve loaded to the screen. Grab the BMP we&amp;#39;ll be drawing below and save it somewhere in your
 project and let&amp;#39;s get started!&lt;/p&gt;
@@ -1666,9 +1629,9 @@ If you have any problems, make sure you&amp;#39;ve got SDL installed and your pr
  
  <entry>
    <title>Lesson 0: Visual Studio</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-visual-studio"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-visual-studio"/>
    <updated>2013-08-15T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-visual-studio</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-visual-studio</id>
    <content type="html">&lt;p&gt;Now that we&amp;#39;ve got the libraries installed we&amp;#39;ll want to create a new project to include and
 link against SDL. At the end we&amp;#39;ll save this as a template project so in the future we can just
 load our template and get to work. First we need a new empty C++ project.&lt;/p&gt;
@@ -1806,9 +1769,9 @@ project selection page.&lt;/p&gt;
  
  <entry>
    <title>Lesson 0: Setting Up SDL</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-setting-up-sdl"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-setting-up-sdl"/>
    <updated>2013-08-15T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-setting-up-sdl</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-setting-up-sdl</id>
    <content type="html">&lt;p&gt;The first step is to get the SDL2 development libraries setup on your system, you can download
 them from the &lt;a href=&quot;http://www.libsdl.org/download-2.0.php&quot;&gt;SDL2 downloads page&lt;/a&gt;. &lt;/p&gt;
 
@@ -1844,9 +1807,9 @@ it&amp;#39;ll be easier to follow along.&lt;/p&gt;
  
  <entry>
    <title>Lesson 0: MinGW</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-mingw"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-mingw"/>
    <updated>2013-08-15T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-mingw</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-mingw</id>
    <content type="html">&lt;p&gt;To build the projects with mingw we&amp;#39;ll be using a lightweight makefile that will set the
 include and library paths along with linking our dependencies for us. The makefile assumes
 that you&amp;#39;ve placed the SDL mingw development libraries under &lt;code&gt;C:/SDL2-2.0.0-mingw/&lt;/code&gt; and that
@@ -1925,9 +1888,9 @@ properly. If an error occurs make sure you&amp;#39;ve followed all the setup ste
  
  <entry>
    <title>Lesson 0: Mac Command Line</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-mac-command-line"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-mac-command-line"/>
    <updated>2013-08-15T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-mac-command-line</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-mac-command-line</id>
    <content type="html">&lt;p&gt;To build the projects on OS X we&amp;#39;ll be using a simple makefile that will include the framework for us.
 The makefile assumes you&amp;#39;ve installed SDL following the instructions in the .dmg file on the SDL2
 downloads page and now have it available as a framework. &lt;/p&gt;
@@ -1989,9 +1952,9 @@ downloads page and now have it available as a framework. &lt;/p&gt;
  
  <entry>
    <title>Lesson 0: Linux Command Line</title>
-   <link href="qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-linux-command-line"/>
+   <link href="www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-linux-command-line"/>
    <updated>2013-08-15T00:00:00-04:00</updated>
-   <id>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-linux-command-line</id>
+   <id>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-linux-command-line</id>
    <content type="html">&lt;p&gt;To build the projects on Linux we&amp;#39;ll be using a simple makefile that will setup the include and library
 dependencies for us. The makefile assumes that your SDL libraries are installed under &lt;code&gt;/usr/local/lib&lt;/code&gt;
 and the headers are under &lt;code&gt;/usr/local/include&lt;/code&gt;. These are the install locations if you built the
