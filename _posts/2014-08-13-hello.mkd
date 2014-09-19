@@ -1,0 +1,28 @@
+---
+layout: sdl_lesson
+title: "Hello"
+description: ""
+comments: true
+category: OS
+tags: Linux
+---
+
+This article is used to test markdown features.
+
+#Hello
+##Hello 2
+######Hello 6
+
+>This is a blockquote
+
+*bold* _italic_
+
+{% highlight c %}
+#include <stdio.h>
+int main(){
+	printf("Hello world!\n");
+	return 0;
+}
+{% endhighlight %}
+
+[Visit github](http://github.com)

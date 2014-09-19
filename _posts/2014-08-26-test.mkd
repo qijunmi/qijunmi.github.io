@@ -1,0 +1,11 @@
+---
+layout: sdl_lesson
+title: "test"
+description: ""
+comments: true
+category: Linux 
+tags: github 
+---
+
+
+This page is remain to write how to create my blog!
