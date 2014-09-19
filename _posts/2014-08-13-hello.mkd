@@ -3,8 +3,8 @@ layout: post
 title: "Hello"
 description: ""
 comments: true
-category: OS 
-tags: Linux 
+category: OS
+tags: Linux
 ---
 
 This article is used to test markdown features.
