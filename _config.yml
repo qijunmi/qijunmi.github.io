@@ -11,11 +11,11 @@ excerpt_separator: <!--more-->
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Will Usher
+title : Qijunmi
 author :
-  name : Will Usher
-  email : will@willusher.io
-  github : Twinklebear
+  name :  qijunmi
+  email : qijunmi@163.com
+  github : qijunmi
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -25,7 +25,7 @@ author :
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : www.willusher.io
+production_url : qijunmi.github.io
 
 nav_pages:
     - {title: SDL2 Tutorials, group: navigation, url: /pages/sdl2}
@@ -87,16 +87,16 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : twinklebeargithub
-    livefyre :
-      site_id : 123
-    intensedebate :
-      account : 123abc
-    facebook :
-      appid : 123
-      num_posts: 5
-      width: 580
-      colorscheme: light
+      short_name : qijunmi
+    # livefyre :
+    #   site_id : 123
+    # intensedebate :
+    #   account : 123abc
+    # facebook :
+    #   appid : 123
+    #   num_posts: 5
+    #   width: 580
+    #   colorscheme: light
    
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
 <channel>
-        <title>Will Usher</title>
-        <description>Will Usher - Will Usher</description>
-        <link>www.willusher.io</link>
-        <link>www.willusher.io</link>
-        <lastBuildDate>2014-09-19T09:22:14-04:00</lastBuildDate>
-        <pubDate>2014-09-19T09:22:14-04:00</pubDate>
+        <title>Qijunmi</title>
+        <description>Qijunmi - qijunmi</description>
+        <link>qijunmi.github.io</link>
+        <link>qijunmi.github.io</link>
+        <lastBuildDate>2014-09-19T09:49:06-04:00</lastBuildDate>
+        <pubDate>2014-09-19T09:49:06-04:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -14,8 +14,8 @@
                 <title>test</title>
                 <description>&lt;p&gt;This page is remain to write how to create my blog!&lt;/p&gt;
 </description>
-                <link>www.willusher.io/linux/2014/08/26/test</link>
-                <guid>www.willusher.io/linux/2014/08/26/test</guid>
+                <link>qijunmi.github.io/linux/2014/08/26/test</link>
+                <guid>qijunmi.github.io/linux/2014/08/26/test</guid>
                 <pubDate>2014-08-26T00:00:00-04:00</pubDate>
         </item>
 
@@ -42,8 +42,8 @@ int main(){
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;http://github.com&quot;&gt;Visit github&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/os/2014/08/13/hello</link>
-                <guid>www.willusher.io/os/2014/08/13/hello</guid>
+                <link>qijunmi.github.io/os/2014/08/13/hello</link>
+                <guid>qijunmi.github.io/os/2014/08/13/hello</guid>
                 <pubDate>2014-08-13T00:00:00-04:00</pubDate>
         </item>
 
@@ -71,8 +71,8 @@ int main(){
 
 &lt;p&gt;&lt;a href=&quot;http://github.com&quot;&gt;Visit github&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/os/2014/08/13/hello</link>
-                <guid>www.willusher.io/os/2014/08/13/hello</guid>
+                <link>qijunmi.github.io/os/2014/08/13/hello</link>
+                <guid>qijunmi.github.io/os/2014/08/13/hello</guid>
                 <pubDate>2014-08-13T00:00:00-04:00</pubDate>
         </item>
 
@@ -205,8 +205,8 @@ please post a comment below.&lt;/p&gt;
 &lt;p&gt;I&amp;#39;ll see you again soon in
 &lt;a href=&quot;/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main&quot;&gt;Lesson 2: Don&amp;#39;t Put Everything in Main&lt;/a&gt;!&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2014/08/01/postscript-1-easy-cleanup</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2014/08/01/postscript-1-easy-cleanup</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2014/08/01/postscript-1-easy-cleanup</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2014/08/01/postscript-1-easy-cleanup</guid>
                 <pubDate>2014-08-01T00:00:00-04:00</pubDate>
         </item>
 
@@ -342,8 +342,8 @@ can write personal files (save games, etc.).&lt;/p&gt;
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2013/08/17/lesson-1-hello-world&quot;&gt;Lesson 1: Hello World!&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths</guid>
                 <pubDate>2014-06-16T00:00:00-04:00</pubDate>
         </item>
 
@@ -498,8 +498,8 @@ and link targets but it&amp;#39;s pretty straightforward to setup.&lt;/p&gt;
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths&quot;&gt;Postscript 0: Properly Finding Resource Paths!&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2014/03/06/lesson-0-cmake</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2014/03/06/lesson-0-cmake</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2014/03/06/lesson-0-cmake</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2014/03/06/lesson-0-cmake</guid>
                 <pubDate>2014-03-06T00:00:00-05:00</pubDate>
         </item>
 
@@ -655,8 +655,8 @@ message centered in the window.&lt;/p&gt;
 &lt;p&gt;That&amp;#39;s it for our quick look at SDL_ttf! Don&amp;#39;t forget to check out the &lt;a href=&quot;http://www.libsdl.org/projects/SDL_ttf/docs/index.html&quot;&gt;documentation&lt;/a&gt; for the library to see what else it&amp;#39;s capable of. As always, if you run into any issues with
 the lesson feel free to post a comment below. I&amp;#39;ll see you again soon in Lesson 7: Taking Advantage of Classes.&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/12/18/lesson-6-true-type-fonts-with-sdl_ttf</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/12/18/lesson-6-true-type-fonts-with-sdl_ttf</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/12/18/lesson-6-true-type-fonts-with-sdl_ttf</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/12/18/lesson-6-true-type-fonts-with-sdl_ttf</guid>
                 <pubDate>2013-12-18T00:00:00-05:00</pubDate>
         </item>
 
@@ -854,8 +854,8 @@ and/or post a question below.&lt;/p&gt;
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2013/12/18/lesson-6-true-type-fonts-with-sdl_ttf&quot;&gt;Lesson 6: True Type Fonts with SDL_ttf!&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/08/27/lesson-5-clipping-sprite-sheets</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/08/27/lesson-5-clipping-sprite-sheets</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/08/27/lesson-5-clipping-sprite-sheets</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/08/27/lesson-5-clipping-sprite-sheets</guid>
                 <pubDate>2013-08-27T00:00:00-04:00</pubDate>
         </item>
 
@@ -969,8 +969,8 @@ If you have any issues double check your code and/or post your question below.&l
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2013/08/27/lesson-5-clipping-sprite-sheets&quot;&gt;Lesson 5: Clipping Sprite Sheets!&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/08/20/lesson-4-handling-events</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/08/20/lesson-4-handling-events</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/08/20/lesson-4-handling-events</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/08/20/lesson-4-handling-events</guid>
                 <pubDate>2013-08-20T00:00:00-04:00</pubDate>
         </item>
 
@@ -1255,8 +1255,8 @@ any questions you may have below.&lt;/p&gt;
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2013/08/20/lesson-4-handling-events&quot;&gt;Lesson 4: Handling Events!&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries</guid>
                 <pubDate>2013-08-18T00:00:00-04:00</pubDate>
         </item>
 
@@ -1509,8 +1509,8 @@ of the image would be drawn at the center of the screen instead.&lt;/p&gt;
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2013/08/18/lesson-3-sdl-extension-libraries&quot;&gt;Lesson 3: SDL Extension Libraries!&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/08/17/lesson-2-dont-put-everything-in-main</guid>
                 <pubDate>2013-08-17T00:00:00-04:00</pubDate>
         </item>
 
@@ -1657,8 +1657,8 @@ If you have any problems, make sure you&amp;#39;ve got SDL installed and your pr
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2014/08/01/postscript-1-easy-cleanup&quot;&gt;Postscript 1: Easy Cleanup&lt;/a&gt;!&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/08/17/lesson-1-hello-world</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/08/17/lesson-1-hello-world</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/08/17/lesson-1-hello-world</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/08/17/lesson-1-hello-world</guid>
                 <pubDate>2013-08-17T00:00:00-04:00</pubDate>
         </item>
 
@@ -1797,8 +1797,8 @@ project selection page.&lt;/p&gt;
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths&quot;&gt;Postscript 0: Properly Finding Resource Paths!&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-visual-studio</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-visual-studio</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-visual-studio</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-visual-studio</guid>
                 <pubDate>2013-08-15T00:00:00-04:00</pubDate>
         </item>
 
@@ -1835,8 +1835,8 @@ it&amp;#39;ll be easier to follow along.&lt;/p&gt;
 
 &lt;p&gt;Don&amp;#39;t forget to read &lt;a href=&quot;/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths&quot;&gt;Postscript 0: Properly Finding Resource Paths&lt;/a&gt; before continuing on to lesson 1 to see how to find the location of assets needed by your program.&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-setting-up-sdl</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-setting-up-sdl</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-setting-up-sdl</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-setting-up-sdl</guid>
                 <pubDate>2013-08-15T00:00:00-04:00</pubDate>
         </item>
 
@@ -1916,8 +1916,8 @@ properly. If an error occurs make sure you&amp;#39;ve followed all the setup ste
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths&quot;&gt;Postscript 0: Properly Finding Resource Paths!&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-mingw</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-mingw</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-mingw</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-mingw</guid>
                 <pubDate>2013-08-15T00:00:00-04:00</pubDate>
         </item>
 
@@ -1980,8 +1980,8 @@ downloads page and now have it available as a framework. &lt;/p&gt;
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths&quot;&gt;Postscript 0: Properly Finding Resource Paths!&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-mac-command-line</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-mac-command-line</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-mac-command-line</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-mac-command-line</guid>
                 <pubDate>2013-08-15T00:00:00-04:00</pubDate>
         </item>
 
@@ -2056,8 +2056,8 @@ properly. If an error occurs make sure you&amp;#39;ve followed all the setup ste
 
 &lt;p&gt;I&amp;#39;ll see you again soon in &lt;a href=&quot;/sdl2%20tutorials/2014/06/16/postscript-0-properly-finding-resource-paths&quot;&gt;Postscript 0: Properly Finding Resource Paths!&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-linux-command-line</link>
-                <guid>www.willusher.io/sdl2%20tutorials/2013/08/15/lesson-0-linux-command-line</guid>
+                <link>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-linux-command-line</link>
+                <guid>qijunmi.github.io/sdl2%20tutorials/2013/08/15/lesson-0-linux-command-line</guid>
                 <pubDate>2013-08-15T00:00:00-04:00</pubDate>
         </item>
 
